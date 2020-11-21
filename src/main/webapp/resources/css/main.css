@@ -1,0 +1,120 @@
+html {
+    background: linear-gradient(90deg, rgb(95, 214, 66) 0%, rgba(104,178,184,1) 100%);
+    background-image:url(/resources/images/img01.jpg);
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    margin:auto;
+    width: 50%;
+    padding:50px;
+    padding-top: 20%;
+    padding-bottom: 30%;
+    font-family: 'Nova Round', cursive;
+    border-radius: 100px;
+    opacity: 0.95;
+}
+
+.container{
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+    color: #545454;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 auto;
+    border-radius: 25px;
+    padding: 2em 2em 4em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.container h1{
+    color: darkblue;
+    margin: 0 auto;
+}
+
+.container ul .cred{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-style: none;
+    border-bottom: solid;
+    border-width: 1px;
+    font-family: 'Nova Round', cursive;
+    font-size: 15px;
+}
+.container ul input[type="text"]{
+    font-size: 20px;
+}
+.container ul input[type="password"]{
+    font-size: 20px;
+}
+
+.submitButton{
+    border-radius: 25px;
+    border-style: none;
+     padding: 12px 25px;
+    font-family: 'Nova Round', cursive;
+    cursor:pointer;
+    color: white;
+    font-size: 15px;
+}
+
+.container #adminPage{
+    float: right;
+}
+
+.submitButton:hover{
+    background: linear-gradient(to bottom right,darkblue,lightskyblue);
+}
+
+.container ul .account{
+    font-size: 10px;
+    text-decoration: none;
+    color: darkblue;
+}
+
+.container ul #reset{
+    float: right;
+}
+
+
+/*For register and newUser interface page*/
+
+.container .hyperlink{
+    border-radius: 25px;
+    border-style: none;
+    padding: 12px 25px;
+    font-family: 'Nova Round', cursive;
+    background-color: transparent;
+    cursor:pointer;
+    color: blue;
+    float:right;
+    font-size: 15px;
+}
+.container ul li{
+    list-style-type: none;
+    padding-bottom: 10px;
+}
+
+.container #countries{
+    width:  50%;
+    padding: 7px 25px;
+}
+
+/*Admin Page*/
+
+#container{
+    width: 33%;
+    margin-top:5%;
+    padding: 0%;
+    opacity: 0.9;
+}
+#container2{
+    width: 84%;
+}
+/*Validation*/
+.error{
+    color: red;
+}
