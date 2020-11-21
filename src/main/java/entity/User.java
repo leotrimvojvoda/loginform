@@ -1,7 +1,6 @@
 package entity;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
