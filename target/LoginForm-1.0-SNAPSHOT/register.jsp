@@ -69,11 +69,18 @@
 
 
 
-            Gender:
+            <!--Gender:
             <input type="radio" id="male" name="gender" value="M">
             <label for="male">Male</label>
             <input type="radio" id="female" name="gender" value="F">
-            <label for="female">Female</label><br>
+            <label for="female">Female</label><br> -->
+
+            Gender:
+            <form:radiobutton path="gender" value="M"/> Male
+            <form:radiobutton path="gender" value="F"/> Female
+            <form:errors path="gender" cssClass="error"/>
+
+
             <br><br>
 
             - <input type ="submit" class = "submitButton" value = "Add User"> -<br><br>

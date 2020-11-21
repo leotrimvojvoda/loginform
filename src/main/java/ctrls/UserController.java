@@ -24,9 +24,14 @@ public class UserController {
         //Create database object in order to use it's crud methods
         Database database = new Database();
 
+        String password = null;
+
         try{
             //In the login page the user is asked to enter the email, which is used to find the user in the database.
             user = database.getUserByEmail(request.getParameter("email"));
+
+            //Get password from webpage
+            password = request.getParameter("psswd");
 
             //I initialize this user object to be able to use in this session.
             generalUser = user;
@@ -40,7 +45,7 @@ public class UserController {
         }
 
         //If we get a user that opens the user interface with all the available user data
-        if(user != null ) return "userInterface";
+        if(user != null && user.getUserPassword().equals(password)) return "userInterface";
 
         //If that user does not exist in the database then the user will be redirected in this page (for now)
         else return "index";
