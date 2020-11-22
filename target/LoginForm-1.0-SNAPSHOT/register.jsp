@@ -62,9 +62,9 @@
 
 
             Languages:
-            English<form:checkbox path="languages"  cssClass="language" value="English"/>
-            German<form:checkbox path="languages" cssClass="language" value="German"/>
-            Albanian<form:checkbox path="languages" cssClass="language" value="Albanian"/>
+            English <form:checkbox path="languages"  cssClass="language" value="English "/>
+            German <form:checkbox path="languages" cssClass="language" value="German "/>
+            Albanian <form:checkbox path="languages" cssClass="language" value="Albanian "/><br>
             <form:errors path="languages" cssClass="error"/><br><br>
 
 

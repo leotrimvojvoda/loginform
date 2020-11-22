@@ -1,6 +1,7 @@
 package ctrls;
 
 import database.Database;
+import encryption.AES;
 import entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +46,7 @@ public class UserController {
         }
 
         //If we get a user that opens the user interface with all the available user data
-        if(user != null && user.getUserPassword().equals(password)) return "userInterface";
+        if(user != null && AES.decrypt(user.getUserPassword()).equals(password)) return "userInterface";
 
         //If that user does not exist in the database then the user will be redirected in this page (for now)
         else return "index";

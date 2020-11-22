@@ -27,7 +27,7 @@
 
         <form action ="${pageContext.request.contextPath}login" method = "get">
 
-            <input type = "text" name = "email" class = "cred" placeholder="Email"required><br><br>
+           <input type = "text" name = "email" class = "cred" placeholder="Email"required><br><br>
             <input type = "password" name = "psswd" class = "cred" placeholder="Password"required><br><br>
 
             <input type ="submit" class = "submitButton" id = "button">

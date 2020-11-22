@@ -57,7 +57,7 @@ public class Database {
             TypedQuery<User> typedQuery = entityManager.createQuery(query,User.class);
 
             user = typedQuery.getSingleResult();
-            user.setUserPassword(AES.decrypt(user.getUserPassword()));
+
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("AN ERROR OCCURRED WHILE RETRIEVING USER FROM DATABASE");
