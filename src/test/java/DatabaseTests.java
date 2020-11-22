@@ -19,7 +19,7 @@ public class DatabaseTests {
     public void addUserTest(){
 
         User user = new User();
-        String languages [] = {"German"};
+        String languages [] = {"German","Albanian"};
         user.setFirstName("Lion");
         user.setLastName("Selamni");
         user.setEmail("anik@hotmail.com");
