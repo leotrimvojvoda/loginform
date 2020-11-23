@@ -1,0 +1,3 @@
+src/main/resources/credentials.properties
+target/classes/credentials.properties
+target/LoginForm-1.0-SNAPSHOT/WEB-INF/classes/credentials.properties

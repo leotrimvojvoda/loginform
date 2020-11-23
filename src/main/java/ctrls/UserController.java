@@ -8,14 +8,20 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import verification.EmailUtil;
+import verification.EmailUtilMulti;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 @Controller
 public class UserController {
 
     private User generalUser = null;
+
+    int code = 0;
 
     //Fires when clicked "LOGIN" in INDEX
     //Use the users email to get the specific newUser from the database
@@ -140,6 +146,38 @@ public class UserController {
     @RequestMapping("adminPage")
     public String adminMode(){
         return "admin";
+    }
+
+
+    @RequestMapping("enterCode")
+    public String enterCode(User user, Model model){
+
+        model.addAttribute("verifyUser",generalUser);
+
+        code = ThreadLocalRandom.current().nextInt(100000, 900000 + 1);
+
+        EmailUtilMulti multi = new EmailUtilMulti("leotrima19@gmail.com","321234");
+        multi.run();
+
+        System.out.println("CODE: "+code+" ATTEMPTED TO BE SENT TO : "+generalUser.getEmail());
+
+        return "verification-form";
+    }
+
+    @RequestMapping("checkVerification")
+    public String checkVerification(HttpServletRequest request, User user, Model model){
+
+        model.addAttribute("dbUser",generalUser);
+
+        String code = request.getParameter("verificationCode").trim();
+
+        if (String.valueOf(this.code).equals(code))
+            System.out.println("Verification successful ["+this.code+" = "+code);
+        else{
+            System.out.println("Verification failed ["+this.code+" ≠ "+code+"]");
+        }
+
+        return "userInterface";
     }
 
 }

@@ -1,5 +1,6 @@
 import cdiConfig.DatabaseConfig;
 import database.Database;
+import encryption.AES;
 import entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -19,13 +20,13 @@ public class DatabaseTests {
     public void addUserTest(){
 
         User user = new User();
-        String languages [] = {"German","Albanian"};
-        user.setFirstName("Lion");
-        user.setLastName("Selamni");
-        user.setEmail("anik@hotmail.com");
-        user.setUserPassword("Deutsch123");
+        String languages [] = {"German","Albanian","English"};
+        user.setFirstName("Wildfried");
+        user.setLastName("Heinrich");
+        user.setEmail("email@gmail.com");
+        user.setUserPassword("password");
         user.setCountry("Germany");
-        user.setAge(3);
+        user.setAge(100);
         user.setGender('M');
         user.setLanguages(Arrays.toString(languages));
 
@@ -37,5 +38,16 @@ public class DatabaseTests {
 
         System.out.println(database.getUserByEmail("tuana@gmail.com").toString());
 
+    }
+
+    @Test
+    public void getUserByID(){
+       User user =  database.getUserByID(49);
+
+       String email = AES.decrypt(user.getEmail());
+
+       String password = AES.decrypt(user.getUserPassword());
+
+        System.out.println("Email: "+email+" - Password: "+password);
     }
 }

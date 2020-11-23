@@ -28,7 +28,7 @@
         <li>ID: ${dbUser.id}</li>
         <li>First Name: ${dbUser.firstName}</li>
         <li>Last Name: ${dbUser.lastName}</li>
-        <li>Email: ${dbUser.email}</li>
+        <li>Email: ${dbUser.email}
         <li>Password: ${dbUser.userPassword}</li>
         <li>Country: ${dbUser.country}</li>
         <li>Age: ${dbUser.age}</li>
@@ -43,6 +43,15 @@
         <input type="submit" class = "submitButton" id = "editProfileButton" name = "form" value ="Edit Profile">
 
     </form:form>
+
+    <br><br>
+    <form:form action = "${pageContext.request.contextPath}enterCode" modelAttribute="dbUser">
+
+        <input type="submit" class = "submitButton" id = "editProfileButton" name = "form" value ="Verify Email">
+
+    </form:form>
+
+
 
     <a href = index.jsp>cancel</a>
 </div>

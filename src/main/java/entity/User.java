@@ -10,11 +10,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Pattern(regexp = "[a-zA-Z]", message = "Must contain only letters")
+    //@Pattern(regexp = "[a-zA-Z]", message = "Must contain only letters")
     @Size(min = 3, max = 25, message = "Must be between 3 and 25 characters")
     private String firstName;
     @Size(min = 3, max = 25, message = "Must be between 3 and 25 characters")
-    @Pattern(regexp = "[a-zA-Z]", message = "Must contain only letters")
+    //@Pattern(regexp = "[a-zA-Z]", message = "Must contain only letters")
     private String lastName;
     @Email @NotNull @NotBlank
     private String email;

@@ -1,3 +1,4 @@
+import ctrls.UserController;
 import database.Database;
 import org.junit.jupiter.api.Test;
 import entity.User;
@@ -38,5 +39,6 @@ public class GeneralTests {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         System.out.println(year);
     }
+
 
 }

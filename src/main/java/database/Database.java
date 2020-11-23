@@ -1,5 +1,6 @@
 package database;
 
+
 import encryption.AES;
 import entity.User;
 import org.springframework.stereotype.Component;
@@ -65,6 +66,18 @@ public class Database {
 
         return user;
 
+    }
+
+    public User getUserByID(int id){
+        User user = null;
+        try{
+           user = entityManager.find(User.class,id);
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("No such ID for USER");
+        }
+
+        return user;
     }
 
     //-U. This method is used to update the user

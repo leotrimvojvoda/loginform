@@ -32,19 +32,19 @@
                 -->
 
 
-            <form:input path="firstName" class = "cred" placeholder="First Name"/>
+            <form:input path="firstName" class = "cred" placeholder="First Name" value ="TestName"/>
             <form:errors path="firstName" cssClass="error"/><br><br>
 
-            <form:input path="lastName" class = "cred" placeholder="Last Name"/>
+            <form:input path="lastName" class = "cred" placeholder="Last Name" value ="TestLName"/>
             <form:errors path="lastName" cssClass="error"/><br><br>
 
-            <form:input path="email" class = "cred" placeholder="E-mail"/>
+            <form:input path="email" class = "cred" placeholder="E-mail" value ="exam@ple.com"/>
             <form:errors path = "email" cssClass="error"/><br><br>
 
-            <form:password path="userPassword" class = "cred" placeholder="Password"/>
+            <form:password path="userPassword" class = "cred" placeholder="Password" value = "password123"/>
             <form:errors path="userPassword" cssClass="error"/><br><br>
 
-            <form:input path="age" type = "number" class = "cred" placeholder="Age" />
+            <form:input path="age" type = "number" class = "cred" placeholder="Age" value = "33"/>
             <form:errors path="age" cssClass="error"/><br><br>
 
 
