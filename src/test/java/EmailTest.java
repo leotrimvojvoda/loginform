@@ -1,3 +1,5 @@
+import ctrls.UserController;
+import entity.User;
 import org.junit.jupiter.api.Test;
 import verification.EmailUtil;
 import verification.EmailUtilMulti;
@@ -19,6 +21,17 @@ public class EmailTest {
     @Test
     public void emailThreadTest(){
         EmailUtilMulti multi = new EmailUtilMulti("leotrima19@gmail.com","321234");
-        multi.run();
+        //multi.run();
+        //multi.start();
+
+    }
+
+    @Test
+    public void testEmailFromController(){
+
+        UserController uc = new UserController();
+
+        uc.enterCode(new User(),null);
+
     }
 }

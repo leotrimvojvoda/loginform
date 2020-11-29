@@ -156,8 +156,10 @@ public class UserController {
 
         code = ThreadLocalRandom.current().nextInt(100000, 900000 + 1);
 
-        EmailUtilMulti multi = new EmailUtilMulti("leotrima19@gmail.com","321234");
-        multi.run();
+        EmailUtil.sendEmail("leotrima19@gmail.com", String.valueOf(code));
+
+        //EmailUtilMulti multi = new EmailUtilMulti("leotrima19@gmail.com","321234");
+        //multi.run();
 
         System.out.println("CODE: "+code+" ATTEMPTED TO BE SENT TO : "+generalUser.getEmail());
 

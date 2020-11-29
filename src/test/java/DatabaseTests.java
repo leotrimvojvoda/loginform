@@ -5,7 +5,10 @@ import entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 public class DatabaseTests {
 
@@ -41,13 +44,26 @@ public class DatabaseTests {
     }
 
     @Test
-    public void getUserByID(){
-       User user =  database.getUserByID(49);
+    public void getUserByID() {
+        User user = database.getUserByID(49);
 
-       String email = AES.decrypt(user.getEmail());
+        if(user != null){
+        String email = AES.decrypt(user.getEmail());
 
-       String password = AES.decrypt(user.getUserPassword());
+        String password = AES.decrypt(user.getUserPassword());
 
         System.out.println("Email: "+email+" - Password: "+password);
+
+    }
+        else System.out.println("NULL");
+    }
+
+    @Test
+    public void getAllUsersTest(){
+        List<User> user = database.getAllUsers();
+
+        for(User u: user){
+            System.out.println(u.getFirstName()+" "+u.getLastName()+" - ");
+        }
     }
 }

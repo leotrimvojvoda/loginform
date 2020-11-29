@@ -13,7 +13,7 @@ import java.util.Properties;
 public class EmailUtilMulti implements Runnable{
 
 
-    private static final String ABSOLUTE_PATH = "/Users/leotrimvojvoda/IdeaProjects/LoginForm/src/main/resources/credentials.properties";
+    private  final String ABSOLUTE_PATH = "/Users/leotrimvojvoda/IdeaProjects/LoginForm/src/main/resources/credentials.properties";
 
     private String toEmail;
     private String body;
@@ -35,11 +35,13 @@ public class EmailUtilMulti implements Runnable{
         System.out.println("Starting " +  threadOne.getName() );
         if (threadOne == null) {
             threadOne = new Thread (this, threadOne.getName());
-            threadOne.start ();
+            threadOne.run();
+        }else{
+            threadOne.run();
         }
     }
 
-    public static synchronized void prepareEmail(Session session, String toEmail, String subject, String body){
+    public synchronized void prepareEmail(Session session, String toEmail, String subject, String body){
         try
         {
             MimeMessage msg = new MimeMessage(session);
@@ -68,7 +70,7 @@ public class EmailUtilMulti implements Runnable{
             e.printStackTrace();
         }
     }
-    public static synchronized void sendEmail(String toEmail, String code){
+    public  synchronized void sendEmail(String toEmail, String code){
 
         String email =  null; //requires valid gmail id
         String password = null;

@@ -2,6 +2,8 @@ package verification;
 
 //I use this object for decrypting my sender email information. Not essential for email sending.
 import encryption.AES;
+
+import javax.annotation.Resource;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -21,6 +23,9 @@ public class EmailUtil {
      */
 
     private static final String ABSOLUTE_PATH = "/Users/leotrimvojvoda/IdeaProjects/LoginForm/src/main/resources/credentials.properties";
+
+   // @Resource(mappedName = "/Users/leotrimvojvoda/Downloads/DEV/apache-tomee-plus-8.0.5/conf/tomee.xml/GMailSMTP")
+   // private static Session session;
 
     public static synchronized void prepareEmail(Session session, String toEmail, String subject, String body){
         try
@@ -51,6 +56,7 @@ public class EmailUtil {
             e.printStackTrace();
         }
     }
+
 
  public static synchronized void sendEmail(String toEmail, String code){
 

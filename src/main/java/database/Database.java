@@ -1,12 +1,10 @@
 package database;
 
-
 import encryption.AES;
 import entity.User;
 import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
-import java.util.Calendar;
+import java.util.List;
 
 //Dependency Injection is used in testing only.
 @Component
@@ -78,6 +76,30 @@ public class Database {
         }
 
         return user;
+    }
+
+    public List<User> getAllUsers(){
+
+       try{
+           List<User> users;
+
+           transaction.begin();
+
+           TypedQuery<User> typedQuery = entityManager.createQuery("SELECT u FROM User u ",User.class);
+
+           transaction.commit();
+
+           return users = typedQuery.getResultList();
+
+       }catch (Exception e){
+           e.printStackTrace();
+           System.out.println("Error while geting ALL USERS");
+       }finally {
+           entityManager.close();
+           emf.close();
+       }
+
+        return null;
     }
 
     //-U. This method is used to update the user
