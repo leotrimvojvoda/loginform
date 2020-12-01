@@ -1,6 +1,6 @@
 package ctrls;
 
-import database.Database;
+import dao.Database;
 import encryption.AES;
 import entity.User;
 import org.springframework.stereotype.Controller;
@@ -9,10 +9,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import verification.EmailUtil;
-import verification.EmailUtilMulti;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -144,7 +144,14 @@ public class UserController {
     }
 
     @RequestMapping("adminPage")
-    public String adminMode(){
+    public String adminMode(Model model){
+
+        Database db = new Database();
+
+        List<User> users = db.getAllUsers();
+
+        model.addAttribute("users",users);
+
         return "admin";
     }
 
@@ -156,10 +163,7 @@ public class UserController {
 
         code = ThreadLocalRandom.current().nextInt(100000, 900000 + 1);
 
-        EmailUtil.sendEmail("leotrima19@gmail.com", String.valueOf(code));
-
-        //EmailUtilMulti multi = new EmailUtilMulti("leotrima19@gmail.com","321234");
-        //multi.run();
+        EmailUtil.sendEmail(generalUser.getEmail(), String.valueOf(code));
 
         System.out.println("CODE: "+code+" ATTEMPTED TO BE SENT TO : "+generalUser.getEmail());
 

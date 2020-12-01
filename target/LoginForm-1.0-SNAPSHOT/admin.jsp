@@ -8,6 +8,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -33,17 +34,33 @@
 <div class = "container" id = "container2">
 
     <table>
-       <tr>
-           <ul>
-               <li>Leotrim Vojvoda</li>
-               <li>Leotrim Vojvoda</li>
-               <li>Leotrim Vojvoda</li>
-               <li>Leotrim Vojvoda</li>
-               <li>Leotrim Vojvoda</li>
-               <li>Leotrim Vojvoda</li>
-               <li>Leotrim Vojvoda</li>
-           </ul>
-       </tr>
+        <tr class = "table">
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+           <!-- <th>Password</th> -->
+            <th>Country</th>
+            <th>Age</th>
+            <th>Languages</th>
+            <th>Verified</th>
+        </tr>
+
+        <c:forEach var="users" items="${users}">
+
+            <tr class = "table">
+                <td>${users.id}</td>
+                <td>${users.firstName}</td>
+                <td>${users.lastName}</td>
+                <td>${users.email}</td>
+              <!--  <td>${users.userPassword}</td> -->
+                <td>${users.country}</td>
+                <td>${users.age}</td>
+                <td>${users.languages}</td>
+            </tr>
+
+
+        </c:forEach>
 
     </table>
 

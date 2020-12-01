@@ -1,6 +1,5 @@
 html {
-    background: linear-gradient(90deg, rgb(95, 214, 66) 0%, rgba(104,178,184,1) 100%);
-    background-image:url(/resources/images/img01.jpg);
+
     -webkit-font-smoothing: antialiased;
 }
 
@@ -93,7 +92,7 @@ body {
     float:right;
     font-size: 15px;
 }
-.container ul li{
+.container table tr th{
     list-style-type: none;
     padding-bottom: 10px;
 }
@@ -114,7 +113,14 @@ body {
 #container2{
     width: 84%;
 }
+
+.container .table  {
+    border: 1px solid black;
+    background-color: red;
+}
+
 /*Validation*/
 .error{
     color: red;
 }
+

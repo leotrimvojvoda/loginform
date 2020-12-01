@@ -1,14 +1,15 @@
-package database;
+package dao;
 
 import encryption.AES;
 import entity.User;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 //Dependency Injection is used in testing only.
 @Component
-public class Database {
+public class Database implements UserDAO {
 
     private final EntityManagerFactory emf;
     private final EntityManager entityManager;
@@ -19,8 +20,6 @@ public class Database {
         entityManager = emf.createEntityManager();
         transaction = entityManager.getTransaction();
     }
-
-
 
     //-C. Gets user from parameters and adds it to the database
     public void addUser(User user){
@@ -41,7 +40,6 @@ public class Database {
             emf.close();
         }
     }
-
 
     //-R. Returns user by email
     public User getUserByEmail(String email){
@@ -78,16 +76,13 @@ public class Database {
         return user;
     }
 
+    @Transactional
     public List<User> getAllUsers(){
 
        try{
            List<User> users;
 
-           transaction.begin();
-
            TypedQuery<User> typedQuery = entityManager.createQuery("SELECT u FROM User u ",User.class);
-
-           transaction.commit();
 
            return users = typedQuery.getResultList();
 
@@ -103,7 +98,7 @@ public class Database {
     }
 
     //-U. This method is used to update the user
-    public String updateUser(User modelUser){
+    public void updateUser(User modelUser){
 
         //This user object is used to copy the changed values from modelUser (in the parameters)
         User user = new User();
@@ -135,11 +130,6 @@ public class Database {
             System.out.println("ERROR WHILE UPDATING THE USER");
             e.printStackTrace();
         }
-
-        /*Here I return only the name of the JSP file and the <init-param> (mvc-servlet.xml)
-         will add a .jsp suffix to the returned value.
-        * */
-        return "userinterface";
     }
 
     //-D. DELETE USER

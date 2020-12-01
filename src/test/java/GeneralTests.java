@@ -1,11 +1,7 @@
-import ctrls.UserController;
-import database.Database;
 import org.junit.jupiter.api.Test;
 import entity.User;
-import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
-import javax.xml.crypto.Data;
 import java.util.Arrays;
 import java.util.Calendar;
 

@@ -1,13 +1,11 @@
 import cdiConfig.DatabaseConfig;
-import database.Database;
+import dao.Database;
 import encryption.AES;
 import entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 public class DatabaseTests {
@@ -26,7 +24,7 @@ public class DatabaseTests {
         String languages [] = {"German","Albanian","English"};
         user.setFirstName("Wildfried");
         user.setLastName("Heinrich");
-        user.setEmail("email@gmail.com");
+        user.setEmail("email5@gmail.com");
         user.setUserPassword("password");
         user.setCountry("Germany");
         user.setAge(100);
