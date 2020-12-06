@@ -26,4 +26,6 @@ public class User {
     private char gender;
     @NotNull(message = "Choose at least one of the options")
     private String languages;
+    private boolean verified;
+
 }

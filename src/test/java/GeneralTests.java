@@ -26,6 +26,7 @@ public class GeneralTests {
         user.setAge(37);
         user.setGender('M');
         user.setLanguages(Arrays.toString(languages));
+        user.setVerified(true);
 
         System.out.println(user.toString());
     }

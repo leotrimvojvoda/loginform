@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login</title>
     <meta name="description" content="Interactive Login Form.">
-    <link rel="stylesheet" type="text/css" href="resources/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/main.css?version=52" />
     <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
 </head>
 
@@ -24,13 +24,18 @@
 <div class = "container">
 
     <br><br>
-    <form:form action = "${pageContext.request.contextPath}checkVerification" modelAttribute="verifyUser">
+    <ul>
 
-        <input type="text" name = "verificationCode" class="cred" placeholder ="Verification Code"><br><br>
+        <form:form action = "${pageContext.request.contextPath}checkVerification" modelAttribute="verifyUser">
 
-        <input type="submit" class = "submitButton" id = "editProfileButton" name = "form" value ="Verify Email">
+            <input type="text" name = "verificationCode" class="cred" id ="verificationCode" placeholder ="Verification Code"><br><br>
 
-    </form:form>
+            <input type="submit" class = "submitButton" id = "editProfileButton" name = "form" value ="Verify Email">
+
+        </form:form>
+
+    </ul>
+
 
 
 

@@ -50,6 +50,15 @@
 
         <c:forEach var="users" items="${users}">
 
+            <c:url var="updateLink" value="/updateFromAdmin">
+                <c:param name="userId" value="${users.id}"/>
+            </c:url>
+
+            <c:url var="deleteLink" value="/admin/deleteUser">
+                <c:param name="userId" value="${users.id}"/>
+
+        </c:url>
+
             <tr>
                 <td>${users.id}</td>
                 <td>${users.firstName}</td>
@@ -59,8 +68,19 @@
                 <td>${users.country}</td>
                 <td>${users.age}</td>
                 <td>${users.languages}</td>
-                <td><input type ="submit" class="adminUpdate"value = "Update"></td>
-                <td><input type ="submit" class="adminDelete"value = "Delete"></td>
+                <!-- UPDATE USER -->
+                <td>
+                    <!-- display the update link -->
+                    <a href="${updateLink}">Update</a>
+                </td>
+
+                <td>
+                    <a href="${deleteLink}">Delete</a>
+                </td>
+
+                <!--<td><input type ="submit" class="adminUpdate"value = "Update"></td>
+                <td><input type ="submit" class="adminDelete"value = "Delete"></td>-->
+
             </tr>
         </c:forEach>
 

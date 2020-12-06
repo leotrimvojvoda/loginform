@@ -1,5 +1,5 @@
 html {
-    /*background: linear-gradient(90deg, rgb(95, 214, 66) 0%, rgba(104,178,184,1) 100%);*/
+    /* background: linear-gradient(90deg, rgb(95, 214, 66) 0%, rgba(104,178,184,1) 100%);*/
     background-image:url(/resources/images/img01.jpg);
     -webkit-font-smoothing: antialiased;
 }
@@ -147,3 +147,6 @@ table .header{
     color: red;
 }
 
+#verificationCode{
+    width: 50%;
+}

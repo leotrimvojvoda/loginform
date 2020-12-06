@@ -2,11 +2,14 @@ import cdiConfig.DatabaseConfig;
 import dao.Database;
 import encryption.AES;
 import entity.User;
+import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class DatabaseTests {
 
@@ -18,20 +21,47 @@ public class DatabaseTests {
 
 
     @Test
-    public void addUserTest(){
+    public void generateUsers(){
 
-        User user = new User();
-        String languages [] = {"German","Albanian","English"};
-        user.setFirstName("Wildfried");
-        user.setLastName("Heinrich");
-        user.setEmail("email5@gmail.com");
-        user.setUserPassword("password");
-        user.setCountry("Germany");
-        user.setAge(100);
-        user.setGender('M');
-        user.setLanguages(Arrays.toString(languages));
+        List<User> users = new ArrayList<>();
 
-        database.addUser(user);
+        Database database = new Database();
+
+        for(int i = 0; i < 25; i++){
+            User user = new User();
+            user.setFirstName("Wildfried");
+            user.setLastName("Heinrich");
+            user.setEmail("user"+ ThreadLocalRandom.current().nextInt(100000, 900000 + 1)+"@gmail.com");
+            user.setUserPassword("password");
+            user.setCountry("Germany");
+            user.setAge(99);
+            user.setGender('M');
+            user.setLanguages("English");
+            users.add(user);
+            database.addUser(user);
+            database.closeStreams();
+        }
+
+        System.out.println(users.get(0).getEmail());
+
+    }
+
+    @Test
+    public void addUser(){
+
+
+            User user = new User();
+            user.setFirstName("Verified");
+            user.setLastName("Heinrich");
+            user.setEmail("user"+ ThreadLocalRandom.current().nextInt(100000, 900000 + 1)+"@gmail.com");
+            user.setUserPassword("password");
+            user.setCountry("Germany");
+            user.setAge(99);
+            user.setGender('M');
+            user.setLanguages("English");
+            user.setVerified(true);
+            database.addUser(user);
+            database.closeStreams();
     }
 
     @Test
@@ -63,5 +93,10 @@ public class DatabaseTests {
         for(User u: user){
             System.out.println(u.getFirstName()+" "+u.getLastName()+" - ");
         }
+    }
+
+    @Test
+    public void deleteUserByIdTest(){
+        database.deleteUserById(39);
     }
 }

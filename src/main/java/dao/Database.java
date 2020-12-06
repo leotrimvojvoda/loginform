@@ -36,8 +36,9 @@ public class Database implements UserDAO {
             e.printStackTrace();
             System.out.println("AN ERROR OCCURRED WHILE ADDING THE USER TO DATABASE");
         }finally{
-            entityManager.close();
-            emf.close();
+            System.out.println("STREAMS NOT CLOSED");
+            //entityManager.close();
+            //emf.close();
         }
     }
 
@@ -82,7 +83,7 @@ public class Database implements UserDAO {
        try{
            List<User> users;
 
-           TypedQuery<User> typedQuery = entityManager.createQuery("SELECT u FROM User u ",User.class);
+           TypedQuery<User> typedQuery = entityManager.createQuery("SELECT u FROM User u ORDER BY u.firstName",User.class);
 
            return users = typedQuery.getResultList();
 
@@ -106,7 +107,7 @@ public class Database implements UserDAO {
         try{
 
             //Here we use the find method to get a specific user from the database using its id
-            user = entityManager.find(User.class,modelUser.getId());
+            user = entityManager.find(User.class, modelUser.getId());
 
             /*
             * Check if fields from modelUser have values that are not null.
@@ -147,10 +148,26 @@ public class Database implements UserDAO {
 
             e.printStackTrace();
         }finally {
-            emf.close();
-            entityManager.close();
+            //emf.close();
+            //entityManager.close();
+            System.out.println("SOURCES NOT CLOSED IN \"DELETE USER\"");
         }
 
+    }
+
+    public void deleteUserById(int id){
+        try{
+            User user = entityManager.find(User.class, id);
+            transaction.begin();
+            entityManager.remove(user);
+            transaction.commit();
+        }catch (Exception e){
+            System.out.println("ERROR WHILE DELETING USER (BY ID)");
+
+            e.printStackTrace();
+        }finally {
+            //closeStreams();
+        }
     }
 
     /*I use this way of closing streams only in one case where I need to invoke database.methods multiple time.

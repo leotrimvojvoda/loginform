@@ -8,8 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import verification.EmailUtil;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
@@ -22,6 +21,7 @@ public class UserController {
     private User generalUser = null;
 
     int code = 0;
+
 
     //Fires when clicked "LOGIN" in INDEX
     //Use the users email to get the specific newUser from the database
@@ -37,6 +37,8 @@ public class UserController {
         try{
             //In the login page the user is asked to enter the email, which is used to find the user in the database.
             user = database.getUserByEmail(request.getParameter("email"));
+
+            System.out.println(request.getParameter("email"));
 
             //Get password from webpage
             password = request.getParameter("psswd");
@@ -59,6 +61,7 @@ public class UserController {
         else return "index";
     }
 
+
     //Fires when clicked "CREATE ACCOUNT" in INDEX
     //Add new USER object  to the model and open the registration page
     @RequestMapping("createAccount")
@@ -72,6 +75,7 @@ public class UserController {
         //Return the JSP page name
         return "register";
     }
+
 
     /*Fires when clicked "ADD USER" in Register Page
     * Add all data to the newUser object and add the newUser to the database
@@ -96,6 +100,8 @@ public class UserController {
         }
     }
 
+
+
     //Fires when clicked "EDIT PROFILE" in User Interface
     @RequestMapping("editPage")
     public String editPage(User user, Model model){
@@ -106,6 +112,7 @@ public class UserController {
 
      return "editProfile";
     }
+
 
     //Fires when clicked "UPDATE INFO" in Edit Profile
     /**
@@ -132,6 +139,7 @@ public class UserController {
 
     }
 
+
     //DeleteUser
     @RequestMapping("deleteUser")
     public String deleteUser(){
@@ -143,19 +151,6 @@ public class UserController {
         return "index";
     }
 
-    @RequestMapping("adminPage")
-    public String adminMode(Model model){
-
-        Database db = new Database();
-
-        List<User> users = db.getAllUsers();
-
-        model.addAttribute("users",users);
-
-        return "admin";
-    }
-
-
     @RequestMapping("enterCode")
     public String enterCode(User user, Model model){
 
@@ -163,12 +158,13 @@ public class UserController {
 
         code = ThreadLocalRandom.current().nextInt(100000, 900000 + 1);
 
-        EmailUtil.sendEmail(generalUser.getEmail(), String.valueOf(code));
+        //EmailUtil.sendEmail(generalUser.getEmail(), String.valueOf(code));
 
         System.out.println("CODE: "+code+" ATTEMPTED TO BE SENT TO : "+generalUser.getEmail());
 
         return "verification-form";
     }
+
 
     @RequestMapping("checkVerification")
     public String checkVerification(HttpServletRequest request, User user, Model model){
@@ -185,5 +181,22 @@ public class UserController {
 
         return "userInterface";
     }
+
+
+    @RequestMapping("updateFromAdmin")
+    public String updateUser(@RequestParam("userId") int id, Model model){
+
+        Database database = new Database();
+
+        generalUser = database.getUserByID(id);
+
+        model.addAttribute("editUser",generalUser);
+
+        return "editProfile";
+    }
+
+
+
+
 
 }

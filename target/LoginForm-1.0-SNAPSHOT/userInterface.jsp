@@ -34,6 +34,7 @@
         <li>Age: ${dbUser.age}</li>
         <li>Gender: ${dbUser.gender}</li>
         <li>Lanuages: ${dbUser.languages}</li>
+        <li>Verified: ${dbUser.verified}</li>
 
     </ul>
 

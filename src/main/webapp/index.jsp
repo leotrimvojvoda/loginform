@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login</title>
     <meta name="description" content="Interactive Login Form.">
-    <link rel="stylesheet" type="text/css" href="resources/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/main.css?version=52" />
     <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
 </head>
 
@@ -43,7 +43,7 @@
     </form>
 <br>
 
-    <form action = "${pageContext.request.contextPath}adminPage" method="GET">
+    <form action = "${pageContext.request.contextPath}admin/adminPage" method="GET">
 
         <input type="submit" class = "hyperlink" id = "adminPage" name = "form" value ="Admin Page"><br>
 

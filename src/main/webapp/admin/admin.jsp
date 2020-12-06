@@ -17,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin Page</title>
     <meta name="description" content="Interactive ADMIN PAGE">
-    <link rel="stylesheet" type="text/css" href="resources/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../resources/css/main.css" />
     <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
 </head>
 
@@ -50,7 +50,7 @@
 
         <c:forEach var="users" items="${users}">
 
-            <c:url var="updateLink" value="/updateFromAdmin">
+            <c:url var="updateLink" value="/admin/initUpdate">
                 <c:param name="userId" value="${users.id}"/>
             </c:url>
 
@@ -86,7 +86,7 @@
 
     </table>
         <br><br>
-    <a href = index.jsp>cancel</a>
+    <a href = ../index.jsp>cancel</a>
 </div>
 
 </body>
