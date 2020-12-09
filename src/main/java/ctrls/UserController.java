@@ -9,16 +9,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import verification.EmailUtil;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 
 @Controller
 public class UserController {
 
-    private User generalUser = null;
+    private User sessionUser = null;
 
     int code = 0;
 
@@ -38,13 +39,11 @@ public class UserController {
             //In the login page the user is asked to enter the email, which is used to find the user in the database.
             user = database.getUserByEmail(request.getParameter("email"));
 
-            System.out.println(request.getParameter("email"));
-
             //Get password from webpage
             password = request.getParameter("psswd");
 
             //I initialize this user object to be able to use in this session.
-            generalUser = user;
+            sessionUser = user;
 
             //Add the user object to the model
             model.addAttribute("dbUser",user);
@@ -85,6 +84,7 @@ public class UserController {
     public String signUp(@Valid @ModelAttribute("newUser") User user,
                          BindingResult bindingResult, Model model){
 
+
         if(bindingResult.hasErrors()) return "register";
 
         else{
@@ -92,7 +92,7 @@ public class UserController {
 
             database.addUser(user);
 
-            generalUser = user;
+            sessionUser = user;
 
             model.addAttribute("dbUser",user);
 
@@ -101,12 +101,11 @@ public class UserController {
     }
 
 
-
     //Fires when clicked "EDIT PROFILE" in User Interface
     @RequestMapping("editPage")
-    public String editPage(User user, Model model){
+    public String editPage(@ModelAttribute("dbUser") User user, Model model){
 
-        user = generalUser;
+        user = sessionUser;
 
        model.addAttribute("editUser",user);
 
@@ -123,7 +122,7 @@ public class UserController {
     @RequestMapping("updateUser")
     public String updateUser(@ModelAttribute("editUser") User user, Model model){
 
-        user.setId(generalUser.getId());
+        user.setId(sessionUser.getId());
 
         Database database = new Database();
 
@@ -139,45 +138,57 @@ public class UserController {
 
     }
 
-
     //DeleteUser
     @RequestMapping("deleteUser")
     public String deleteUser(){
 
         Database database = new Database();
 
-        database.deleteUser(generalUser);
+        database.deleteUser(sessionUser);
 
         return "index";
     }
 
-    @RequestMapping("enterCode")
-    public String enterCode(User user, Model model){
 
-        model.addAttribute("verifyUser",generalUser);
+    @RequestMapping("enterCode")
+    public String enterCode(@ModelAttribute("dbUser") User user, Model model){
+
+        model.addAttribute("verifyUser", sessionUser);
 
         code = ThreadLocalRandom.current().nextInt(100000, 900000 + 1);
 
-        //EmailUtil.sendEmail(generalUser.getEmail(), String.valueOf(code));
+        EmailUtil.sendEmail(sessionUser.getEmail(), String.valueOf(code));
 
-        System.out.println("CODE: "+code+" ATTEMPTED TO BE SENT TO : "+generalUser.getEmail());
+        System.out.println("CODE: "+code+" ATTEMPTED TO BE SENT TO : "+ sessionUser.getEmail());
 
         return "verification-form";
     }
 
 
     @RequestMapping("checkVerification")
-    public String checkVerification(HttpServletRequest request, User user, Model model){
+    public String checkVerification(HttpServletRequest request, @ModelAttribute("dbUser") User user, Model model){
 
-        model.addAttribute("dbUser",generalUser);
 
         String code = request.getParameter("verificationCode").trim();
 
-        if (String.valueOf(this.code).equals(code))
-            System.out.println("Verification successful ["+this.code+" = "+code);
+        Database database = new Database();
+
+        sessionUser = database.getUserByID(sessionUser.getId());
+
+        if (String.valueOf(this.code).equals(code)){
+
+            database.verify(sessionUser.getId());
+
+            model.addAttribute("dbUser", sessionUser);
+
+            System.out.println("Verification successful ["+this.code+" = "+code+"]");
+
+        }
         else{
             System.out.println("Verification failed ["+this.code+" ≠ "+code+"]");
         }
+
+
 
         return "userInterface";
     }
@@ -188,9 +199,9 @@ public class UserController {
 
         Database database = new Database();
 
-        generalUser = database.getUserByID(id);
+        sessionUser = database.getUserByID(id);
 
-        model.addAttribute("editUser",generalUser);
+        model.addAttribute("editUser", sessionUser);
 
         return "editProfile";
     }

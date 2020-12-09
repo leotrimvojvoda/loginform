@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login</title>
     <meta name="description" content="Interactive Login Form.">
-    <link rel="stylesheet" type="text/css" href="resources/css/main.css?version=52" />
+    <link rel="stylesheet" type="text/css" href="resources/css/main.css?version=53" />
     <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
 </head>
 

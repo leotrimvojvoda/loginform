@@ -67,7 +67,7 @@ public class DatabaseTests {
     @Test
     public void getUserByEmailTest(){
 
-        System.out.println(database.getUserByEmail("tuana@gmail.com").toString());
+        System.out.println(database.getUserByEmail("leotrim@gmail.com").toString());
 
     }
 

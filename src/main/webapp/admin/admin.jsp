@@ -42,8 +42,9 @@
            <!-- <th>Password</th> -->
             <th>Country</th>
             <th>Age</th>
+            <th>Gender</th>
             <th>Languages</th>
-            <!--<th>Verified</th>-->
+            <th>Verified</th>
             <th>Update</th>
             <th>Delete</th>
         </tr>
@@ -67,7 +68,9 @@
               <!--  <td>${users.userPassword}</td> -->
                 <td>${users.country}</td>
                 <td>${users.age}</td>
+                <td>${users.gender}</td>
                 <td>${users.languages}</td>
+                <td>${users.verified}</td>
                 <!-- UPDATE USER -->
                 <td>
                     <!-- display the update link -->

@@ -122,6 +122,7 @@ public class Database implements UserDAO {
             if(modelUser.getAge()!=0) user.setAge(modelUser.getAge());
             if(Character.isLetter(modelUser.getGender())) user.setGender(modelUser.getGender());
 
+
             //Add user to the database
             transaction.begin();
             entityManager.persist(user);
@@ -168,6 +169,23 @@ public class Database implements UserDAO {
         }finally {
             //closeStreams();
         }
+    }
+
+    public void verify(int id){
+
+        User user;
+
+        try{
+            user = entityManager.find(User.class, id);
+            user.setVerified(true);
+            transaction.begin();
+            entityManager.persist(user);
+            transaction.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("ERROR WHILE SETTING 'VERIFIED  = TRUE'");
+        }
+
     }
 
     /*I use this way of closing streams only in one case where I need to invoke database.methods multiple time.

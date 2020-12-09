@@ -23,6 +23,7 @@
 
 <div class = "container">
 
+    A 6 digit code was sent to: ${verifyUser.email}
     <br><br>
     <ul>
 
@@ -36,10 +37,6 @@
 
     </ul>
 
-
-
-
-    <a href = index.jsp>cancel</a>
 </div>
 
 </body>

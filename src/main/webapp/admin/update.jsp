@@ -63,9 +63,16 @@
             <form:select  id="countries" path="country">
                 <option value="Misr">Misr</option>
                 <option value="Turkey">Turkey</option>
-                <option value="Ash-Sham">Ash-Sham</option>
-                <option value="Rome">Rome</option>
-                <option value="North">North</option>
+                <option value="Montenegro">Montenegro</option>
+                <option value="Luxembourg">Luxembourg</option>
+                <option value="Myanmar">Myanmar</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Bahamas">Bahamas</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Iceland">Iceland</option>
+                <option value="Haiti">Haiti</option>
+                <option value="North Pole">North Pole</option>
             </form:select><br><br>
 
 

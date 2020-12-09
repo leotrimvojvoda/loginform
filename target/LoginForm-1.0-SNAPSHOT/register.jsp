@@ -32,19 +32,19 @@
                 -->
 
 
-            <form:input path="firstName" class = "cred" placeholder="First Name" value ="TestName"/>
+            <form:input path="firstName" class = "cred" placeholder="First Name"/>
             <form:errors path="firstName" cssClass="error"/><br><br>
 
-            <form:input path="lastName" class = "cred" placeholder="Last Name" value ="TestLName"/>
+            <form:input path="lastName" class = "cred" placeholder="Last Name"/>
             <form:errors path="lastName" cssClass="error"/><br><br>
 
-            <form:input path="email" class = "cred" placeholder="E-mail" value ="exam@ple.com"/>
+            <form:input path="email" class = "cred" placeholder="E-mail"/>
             <form:errors path = "email" cssClass="error"/><br><br>
 
-            <form:password path="userPassword" class = "cred" placeholder="Password" value = "password123"/>
+            <form:password path="userPassword" class = "cred" placeholder="Password"/>
             <form:errors path="userPassword" cssClass="error"/><br><br>
 
-            <form:input path="age" type = "number" class = "cred" placeholder="Age" value = "33"/>
+            <form:input path="age" type = "number" class = "cred" placeholder="Age"/>
             <form:errors path="age" cssClass="error"/><br><br>
 
 
@@ -53,9 +53,16 @@
             <form:select  id="countries" path="country">
                 <option value="Misr">Misr</option>
                 <option value="Turkey">Turkey</option>
-                <option value="Ash-Sham">Ash-Sham</option>
-                <option value="Rome">Rome</option>
-                <option value="North">North</option>
+                <option value="Montenegro">Montenegro</option>
+                <option value="Luxembourg">Luxembourg</option>
+                <option value="Myanmar">Myanmar</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Bahamas">Bahamas</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Iceland">Iceland</option>
+                <option value="Haiti">Haiti</option>
+                <option value="North Pole">North Pole</option>
             </form:select><br><br>
 
 
